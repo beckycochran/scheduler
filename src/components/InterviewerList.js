@@ -4,7 +4,7 @@ import "components/InterviewerList.scss";
 
 export default function InterviewerList(props) {
 
-  const interviewerProfile = props.interviewers.map(
+  const interviewers = props.interviewers.map(
     (interviewer) => {
       return (
         <InterviewerListItem
@@ -18,7 +18,6 @@ export default function InterviewerList(props) {
     }
   );
 
-  // return <ul>{interviewerProfile}</ul>
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
