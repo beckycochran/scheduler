@@ -1,7 +1,10 @@
 import React from "react";
+import Button from "components/Button";
+import InterviewerList from "components/InterviewerList";
 
 
-export default function Confirm(props) {
+
+export default function Error(props) {
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">
@@ -12,8 +15,11 @@ export default function Confirm(props) {
         className="appointment__error-close"
         src="images/close.png"
         alt="Close"
+        onClick={props.onClose}
       />
     </main>
+
+
   );
 
 }
