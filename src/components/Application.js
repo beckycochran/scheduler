@@ -4,6 +4,7 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import { useState } from "react";
 
+
 export default function Application(props) {
   const [day, setDay] = useState('Monday');
   const days = [
