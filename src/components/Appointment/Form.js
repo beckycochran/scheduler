@@ -27,11 +27,14 @@ export default function Form(props) {
   const save = () => {
 
     function validate() {
-      if (name === "" || interviewer === null) {
-        return false;
+      if (name === "") {
+        setError("Student name cannot be blank");
+        return;
       }
-      return true
+
+      props.onSave(name, interviewer);
     }
+
 
     const result = validate();
     if (result) {
@@ -47,7 +50,9 @@ export default function Form(props) {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
+        
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -59,6 +64,9 @@ export default function Form(props) {
             }}
             data-testid="student-name-input"
           />
+
+          <section className="appointment__validation">{error}</section>
+
         </form>
 
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
