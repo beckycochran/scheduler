@@ -12,6 +12,9 @@ function back() {
   }
 }
 
+const [mode, setMode] = useState(initial);
+const [history, setHistory] = useState([initial]);
+
 
 const FIRST = "FIRST";
 
