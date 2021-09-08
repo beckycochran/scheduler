@@ -4,7 +4,7 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import { useState } from "react";
 import Appointment from "components/Appointment/index.js";
-import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "components/helpers/selectors.js";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors.js";
 
 //import helper functions to help with loops
 //destroy/save transitions
