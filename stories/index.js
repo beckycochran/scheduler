@@ -18,13 +18,6 @@ import Error from 'src/components/Appointment/Error';
 import Form from 'src/components/Appointment/Form';
 
 
-
-
-
-
-
-
-
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]

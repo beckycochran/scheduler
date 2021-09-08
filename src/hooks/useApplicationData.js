@@ -1,6 +1,10 @@
 import { useEffect, useReducer } from "react";
 import axios from "axios";
-
+import reducer, {
+  SET_DAY,
+  SET_APPLICATION_DATA,
+  SET_INTERVIEW,
+} from "helpers/updateAppState";
 
 
 // Our useApplicationData Hook will return an object with four keys.
@@ -12,15 +16,14 @@ import axios from "axios";
 
 
 export default function useApplicationData() {
-  
-  const [state, dispatch] = useReducer(reducer,
-    {
-      day: "Monday",
-      days: [],
-      interviewers: {},
-      appointments: {}
-    })
 
+
+  const [state, dispatch] = useReducer(reducer, {
+    day: "Monday",
+    days: [],
+    appointments: {},
+    interviewers: {}
+  });
 
   const setDay = day => dispatch({ type: SET_DAY, value: day });
 

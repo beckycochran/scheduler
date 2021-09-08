@@ -6,6 +6,8 @@ import { useState } from "react";
 import Appointment from "components/Appointment/index.js";
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors.js";
 
+import useApplicationData from "hooks/useApplicationData.js";
+
 //import helper functions to help with loops
 //destroy/save transitions
 
@@ -114,8 +116,6 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-
- 
 
   const appointments = getAppointmentsForDay(state, state.day).map(
 
