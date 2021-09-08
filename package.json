@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.4",
     "classmates": "^1.0.1",
     "classnames": "^2.2.6",
     "normalize.css": "^8.0.1",
@@ -16,7 +17,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "test:server": "NODE_ENV=test npm start",
+    "cypress": "cypress open -P ."
+
   },
   "browserslist": {
     "production": [
@@ -39,9 +43,13 @@
     "@storybook/react": "^5.0.10",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
+    "@testing-library/react-hooks": "^7.0.2",
     "babel-loader": "^8.0.5",
     "node-sass": "^4.14.0",
-    "prop-types": "^15.7.2"
+    "prop": "^0.1.1",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "^16.9.0",
+    "types": "^0.1.1"
   },
   "jest": {
     "watchPathIgnorePatterns": [
