@@ -14,8 +14,40 @@ export default function Application(props) {
     days: [],
     appointments: {}
   });
-  
+
+
+  function bookInterview(id, interview) {
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      dispatch({
+        type: SET_INTERVIEW,
+        id,
+        interview
+      });
+    });
+  }
+  function cancelInterview(id) {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
+      dispatch({
+        type: SET_INTERVIEW,
+        id,
+        interview: null
+      });
+    });
+  }
+
   const interviewers = getInterviewersForDay(state, state.day);
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+  
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+  }
+  
+
   const setDay = day => dispatch({ type: "SET_DAY", value: day });
   useEffect(() => {
     Promise.all([
