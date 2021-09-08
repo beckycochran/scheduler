@@ -4,13 +4,17 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import { useState } from "react";
 import Appointment from "components/Appointment/index.js";
-
+import axios from "axios";
 
 //import helper functions to help with loops
 
 export default function Application(props) {
-  const [day, setDay] = useState('Monday');
-  const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+  
 
   const setDay = day => dispatch({ type: "SET_DAY", value: day });
   useEffect(() => {
@@ -28,55 +32,19 @@ export default function Application(props) {
         });
       })
       .catch(err => err);
-
-  // const days = [
-  //   {
-  //     id: 1,
-  //     name: "Monday",
-  //     spots: 2,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Tuesday",
-  //     spots: 5,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Wednesday",
-  //     spots: 0,
-  //   },
-  // ];
-
-  const appointments = [
-    {
-      id: 1,
-      time: "12pm",
-    },
-    {
-      id: 2,
-      time: "1pm",
-      interview: {
-        student: "Lydia Miller-Jones",
-        interviewer: {
-          id: 1,
-          name: "Sylvia Palmer",
-          avatar: "https://i.imgur.com/LpaY82x.png",
+      const webSocket = new WebSocket("wss:https://interviewscheduler.netlify.com/");
+      webSocket.onopen = function() {
+        webSocket.send(`Socket initialized`);
+      };
+  
+      webSocket.onmessage = function(message) {
+        let parsedMessage = JSON.parse(message.data);
+        if (parsedMessage.type === "SET_INTERVIEW") {
+          dispatch({ ...parsedMessage });
         }
-      }
-    },
-    {
-      id: 3,
-      time: "7pm",
-      interview: {
-        student: "Becarooski",
-        interviewer: {
-          id: 1,
-          name: "Rebe Parker",
-          avatar: "https://i.imgur.com/LpaY82x.png",
-        }
-      }
-    }
-  ];
+      };
+    }, []);
+
 
 
   return (
@@ -91,8 +59,8 @@ export default function Application(props) {
 
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            day={day}
+            days={state.days}
+            day={state.day}
             setDay={setDay}
           />
         </nav>
