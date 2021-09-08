@@ -1,7 +1,18 @@
 import { renderHook, act } from "@testing-library/react-hooks";
-
+import { useState } from "react";
 import useVisualMode from "hooks/useVisualMode";
 
+const [mode, setMode] = useState(initial);
+const [history, setHistory] = useState([initial]);
+
+
+function transition(transition, replace = false) {
+  if (!replace) {
+    setHistory([initial].concat(mode));
+  }
+
+  setMode(transition);
+}
 
 function back() {
   if (!history.length) {
@@ -11,10 +22,6 @@ function back() {
     setHistory([initial].splice(-1, 1));
   }
 }
-
-const [mode, setMode] = useState(initial);
-const [history, setHistory] = useState([initial]);
-
 
 const FIRST = "FIRST";
 
