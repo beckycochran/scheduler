@@ -15,7 +15,7 @@ export default function Application(props) {
     appointments: {}
   });
   
-
+  const interviewers = getInterviewersForDay(state, state.day);
   const setDay = day => dispatch({ type: "SET_DAY", value: day });
   useEffect(() => {
     Promise.all([
