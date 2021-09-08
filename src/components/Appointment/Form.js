@@ -50,10 +50,14 @@ export default function Form(props) {
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name={props.name}
-            type="text"
+            name="name"
             placeholder="Enter Student Name"
-            onChange={(event) => setName(event.target.value)}
+            value={props.name}
+            type="text"
+            onChange={(event) => {
+              setName(event.target.value)
+            }}
+            data-testid="student-name-input"
           />
         </form>
 

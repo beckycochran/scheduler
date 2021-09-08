@@ -114,6 +114,24 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
+  /*
+  const days = state.days.map(day => {
+    return day.appointments.includes(action.id)
+      ? {
+          ...day,
+          spots: getSpotsForDay(day)
+        }
+      : day;
+  });
+
+  return {
+    ...state,
+    appointments,
+    days
+  };
+
+} 
+*/
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(
