@@ -4,7 +4,7 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import { useState } from "react";
 import Appointment from "components/Appointment/index.js";
-import axios from "axios";
+import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "components/helpers/selectors.js";
 
 //import helper functions to help with loops
 //destroy/save transitions
@@ -41,14 +41,14 @@ import axios from "axios";
 //   function bookInterview(id, interview) {
 //     console.log(id, interview);
 //   }
-  
+
 //   function save(name, interviewer) {
 //     const interview = {
 //       student: name,
 //       interviewer
 //     };
 //   }
-  
+
 
 //   const setDay = day => dispatch({ type: "SET_DAY", value: day });
 //   useEffect(() => {
@@ -67,7 +67,7 @@ import axios from "axios";
 //         });
 //       });
 //     }, []);
-  
+
 
 
 //   return (
@@ -135,12 +135,18 @@ export default function Application(props) {
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(
+
     appointment => {
+
+      const interview = getInterview(state, appointment.interview);
+      const interviewers = getInterviewersForDay(state, state.day);
+
       return (
         <Appointment
           key={appointment.id}
-          {...appointment}
-          interview={getInterview(state, appointment.interview)}
+          id={appointment.id}
+          time={appointment.time}
+          interview={interview}
           interviewers={interviewers}
           bookInterview={bookInterview}
           cancelInterview={cancelInterview}
