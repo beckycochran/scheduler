@@ -2,11 +2,11 @@ import React from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import { useState } from 'react';
+import "./styles.scss";
 
 export default function Form(props) {
 
-  // const [name, setName] = useState('');
-  // const [interviewer, setInterviewer] = useState('');
+
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
@@ -42,7 +42,7 @@ export default function Form(props) {
       props.onSave(name, interviewer);
     } else {
       setError("Please provide a student name and interviewer");
-      Reset();
+      reset();
     }
   }
 

@@ -8,6 +8,8 @@ import "index.scss";
 import Button from "components/Button";
 import DayListItem from 'src/components/DayListItem';
 import DayList from 'src/components/DayList';
+import InterviewerListItem from 'src/components/InterviewerListItem';
+import InterviewerList from 'src/components/InterviewerList';
 import Appointment from 'src/components/Appointment/index';
 import Header from 'src/components/Appointment/Header';
 import Empty from 'src/components/Appointment/Empty';
@@ -32,13 +34,19 @@ storiesOf("Button", module)
     <Button disabled onClick={action("button-clicked")}>
       Disabled
     </Button>
-  ))
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
+  ));
+
+  storiesOf("DayListItem", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />) 
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> 
   ));
+
 
 const days = [
   {
@@ -57,6 +65,8 @@ const days = [
     spots: 0,
   },
 ];
+
+
 
 storiesOf("DayList", module)
   .addParameters({
@@ -91,7 +101,41 @@ storiesOf("InterviewerList", module)
   .add("Preselected", () => (
     <InterviewerList
       interviewers={interviewers}
-      interviewer={3}
+      interviewerID={3}
+      setInterviewer={action("setInterviewer")}
+    />
+  ));
+
+  const interviewer = {
+    id: 1,
+    name: "Sylvia Palmer",
+    avatar: "https://i.imgur.com/LpaY82x.png"
+  };
+
+  storiesOf("InterviewerListItem", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Unselected", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
+    />
+  ))
+  .add("Selected", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
+      selected
+    />
+  ))
+  .add("Clickable", () => (
+    <InterviewerListItem
+      id={interviewer.id}
+      name={interviewer.name}
+      avatar={interviewer.avatar}
       setInterviewer={action("setInterviewer")}
     />
   ))

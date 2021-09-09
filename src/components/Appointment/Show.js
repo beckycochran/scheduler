@@ -32,10 +32,3 @@ export default function Show(props) {
     </main>
   );
 }
-
-// The Show component should accept the following props:
-
-//     student:String eg. "Lydia Miller-Jones"
-//     interviewer:Object we can use the interview object that already exists in stories/index.js for this
-//     onEdit:Function to be called when the user clicks the Edit button
-//     onDelete:Function to be called when the user clicks the Delete button
