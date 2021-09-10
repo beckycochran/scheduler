@@ -76,31 +76,48 @@ export default function Appointment(props) {
 
   return (
     <article data-testid="appointment">
-      <Header time={props.time} />
+      
+      <Header time={props.time}></Header>
+{/*       
+      (props.interview ? <Show
+        student={props.interview.student}
+        interviewer={props.interview.interviewer}
+        onEdit={() => transition(EDIT)}
+        onDelete={() => transition(CONFIRM)}
+      /> :  <Empty
+        className="appointment__add-button"
+        src="images/add.png"
+        alt="Add"
+        onClick={props.onAdd}
+      />
+      );
+       */}
+
+
       {mode === CREATE && (
         <Form
-          interviewers={props.interviewers}
-          onCancel={onCancel}
-          onSave={save}
+        interviewers={props.interviewers}
+        onCancel={onCancel}
+        onSave={save}
         />
-      )}
+        )}
 
       {mode === EDIT && (
         <Form
-          name={props.interview.student}
-          interviewers={props.interviewers}
-          selectedInterviewID={props.interview.interviewer.id}
-          onSave={save}
-          onCancel={onCancel}
+        name={props.interview.student}
+        interviewers={props.interviewers}
+        selectedInterviewID={props.interview.interviewer.id}
+        onSave={save}
+        onCancel={onCancel}
         />
-      )}
+        )}
       {mode === CONFIRM && (
         <Confirm
-          message={"Are you sure you want to delete?"}
-          onCancel={onCancel}
-          onConfirm={deleteInterview}
+        message={"Are you sure you want to delete?"}
+        onCancel={onCancel}
+        onConfirm={deleteInterview}
         />
-      )}
+        )}
       {mode === EMPTY && <Empty onAdd={onAdd} />}
 
       {mode === DELETE && <Status message={"Deleting"} />}
@@ -109,18 +126,18 @@ export default function Appointment(props) {
 
       {mode === ERROR_SAVE && (
         <Error message={"Could not save appointment"} onClose={onClose} />
-      )}
+        )}
       {mode === ERROR_DELETE && (
         <Error message={"Could not delete appointment"} onClose={onClose} />
-      )}
-      {mode === SHOW && props.interview && (
-        <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer}
-          onEdit={() => transition(EDIT)}
-          onDelete={() => transition(CONFIRM)}
-        />
-      )}
+        )}
+        {mode === SHOW && props.interview && (
+          <Show
+            student={props.interview.student}
+            interviewer={props.interview.interviewer}
+            onEdit={() => transition(EDIT)}
+            onDelete={() => transition(CONFIRM)}
+          />
+        )}
     </article>
   );
 }
