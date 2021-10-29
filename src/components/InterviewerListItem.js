@@ -4,13 +4,6 @@ import classnames from "classnames";
 
 export default function InterviewerListItem(props) {
 
-  // const interviewer = classnames("interviewers_item", {
-  //   "day-list__item--id": props.selected,
-  //   "day-list__item--name": props.name,
-  //   "day-list__item--avatar": props.avatar,
-  //   "day-list__item--selected": props.selected,
-  // })
-
   const interviewerClass = classnames("interviewers__item", {
     "interviewers__item--selected": props.selected === true,
   });
