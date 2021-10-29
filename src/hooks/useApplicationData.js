@@ -44,22 +44,24 @@ export default function useApplicationData() {
     });
   }, []);
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, day) {
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       dispatch({
         type: SET_INTERVIEW,
         id,
-        interview
+        interview,
+        day
       });
     });
   }
 
-  function cancelInterview(id) {
+  function cancelInterview(id, day) {
     return axios.delete(`/api/appointments/${id}`).then(() => {
       dispatch({
         type: SET_INTERVIEW,
         id,
-        interview: null
+        interview: null,
+        day
       });
     });
   }
