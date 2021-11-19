@@ -47,3 +47,11 @@ export const getInterviewersForDay = (state, day) => {
   }
   return ans;
 };
+
+export const getDayFromAppointmentId = (state, id) => {
+  for (const day of state.days) {
+    if (day.appointments.includes(Number(id))) {
+      return day.name;
+    }
+  }
+};
