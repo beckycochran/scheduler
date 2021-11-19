@@ -1,9 +1,12 @@
 import React from "react";
 import "components/Application.scss";
-import DayList from "components/DayList";
+import DayList from "components/DayList.js";
 import Appointment from "components/Appointment/index.js";
-import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors.js";
-import useApplicationData from "hooks/useApplicationData.js";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
+import { useApplicationData } from "./hooks/useApplicationData";
+
+
+
 
 
 export default function Application(props) {
@@ -25,15 +28,15 @@ export default function Application(props) {
           src="images/logo.png"
           alt="Interview Scheduler"
         />
+        <a className="created-by" href="http://chenliang.ca">Built By: Chen Liang</a>
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={state.days} day={state.day} setDay={day => setDay(day)} />
+          <DayList
+            days={state.days}
+            day={state.day}
+            setDay={day => setDay(day)}
+          />
         </nav>
-        <img
-          className="sidebar__lhl sidebar--centered"
-          src="images/lhl.png"
-          alt="Lighthouse Labs"
-        />
       </section>
       <section className="schedule">
         {days.map(appointment => {
@@ -59,5 +62,3 @@ export default function Application(props) {
     </main>
   );
 }
-
-
