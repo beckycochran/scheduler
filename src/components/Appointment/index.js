@@ -29,7 +29,7 @@ const save = (name, interviewer) => {
   return interview;
 };
 
-const Appointment = props => {
+export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -141,5 +141,3 @@ const Appointment = props => {
     </article>
   );
 };
-
-export default Appointment;
